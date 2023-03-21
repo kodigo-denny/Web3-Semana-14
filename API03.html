@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function guardar(){
+            try{
+                let objeto ={
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                console.log(objeto)
+                console.log(JSON.stringify(objeto))
+
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores",
+                    {
+                        method: "POST",
+                        headers: {"content-type": "application/json"},
+                        body: JSON.stringify(objeto)
+                    })
+
+                let o = await res.json()
+
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="guardar()">Guardar</button>
+</body>
+</html>
