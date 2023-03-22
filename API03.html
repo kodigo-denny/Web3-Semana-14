@@ -32,9 +32,53 @@
                 alert(error)
             }
         }
+
+        async function editar(){
+            try{
+                let objeto ={
+                    autorId: 1,
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores",
+                    {
+                        method: "PUT",
+                        headers: {"content-type": "application/json"},
+                        body: JSON.stringify(objeto)
+                    })
+
+                let o = await res.json()
+
+                alert(o.message)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        async function eliminar(){
+            try{
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores?id=83",
+                    {
+                        method: "DELETE",
+                        headers: {"content-type": "application/json"},
+                    })
+
+                let o = await res.json()
+
+                alert(o.message)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
     </script>
 </head>
 <body>
     <button onclick="guardar()">Guardar</button>
+    <button onclick="editar()">Editar</button>
+    <button onclick="eliminar()">Eliminar</button>
 </body>
 </html>
